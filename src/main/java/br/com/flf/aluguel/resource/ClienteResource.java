@@ -19,6 +19,7 @@ public class ClienteResource {
 	@Autowired
 	private ClienteService clienteService;
 
+	@GetMapping
 	public ResponseEntity<List<Cliente>> list() {
 
 		List<Cliente> clientes = clienteService.list();

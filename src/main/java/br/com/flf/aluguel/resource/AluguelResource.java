@@ -19,6 +19,7 @@ public class AluguelResource {
 	@Autowired
 	private AluguelService aluguelService;
 
+	@GetMapping
 	public ResponseEntity<List<Aluguel>> list() {
 
 		List<Aluguel> alugueis = aluguelService.list();
