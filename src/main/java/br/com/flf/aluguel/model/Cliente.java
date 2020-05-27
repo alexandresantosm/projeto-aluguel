@@ -1,11 +1,14 @@
 package br.com.flf.aluguel.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Cliente implements Serializable {
@@ -19,6 +22,9 @@ public class Cliente implements Serializable {
 	private String cpf;
 	private String endereco;
 	private String contato;
+
+	@OneToMany(mappedBy = "cliente")
+	private List<Aluguel> alugueis = new ArrayList<>();
 
 	public Cliente() {
 		super();
@@ -71,6 +77,14 @@ public class Cliente implements Serializable {
 
 	public void setContato(String contato) {
 		this.contato = contato;
+	}
+
+	public List<Aluguel> getAlugueis() {
+		return alugueis;
+	}
+
+	public void setAlugueis(List<Aluguel> alugueis) {
+		this.alugueis = alugueis;
 	}
 
 	@Override

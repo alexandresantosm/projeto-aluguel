@@ -7,6 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Aluguel implements Serializable {
@@ -18,14 +22,20 @@ public class Aluguel implements Serializable {
 	private Integer id;
 	private Date data;
 
+	@ManyToOne
+	@JoinColumn(name = "cliente_id")
+	@JsonIgnore
+	private Cliente cliente;
+
 	public Aluguel() {
 		super();
 	}
 
-	public Aluguel(Integer id, Date data) {
+	public Aluguel(Integer id, Date data, Cliente cliente) {
 		super();
 		this.id = id;
 		this.data = data;
+		this.cliente = cliente;
 	}
 
 	public Integer getId() {
@@ -42,6 +52,14 @@ public class Aluguel implements Serializable {
 
 	public void setData(Date data) {
 		this.data = data;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
 	@Override
